@@ -39,9 +39,6 @@ class NetworkManager {
                 DispatchQueue.main.async {
                     completion(.success(type))
                 }
-                
-                // self.employees = self.employees.sorted { $0.name < $1.name }
-                
             } catch {
                 completion(.failure(.decodingError))
             }
