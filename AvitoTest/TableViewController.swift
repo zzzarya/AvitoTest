@@ -14,7 +14,7 @@ final class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchJSON()
-    }
+}
 // MARK: - UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
         employees.count
@@ -51,17 +51,34 @@ final class TableViewController: UITableViewController {
 // MARK: - Networking
 extension TableViewController {
     private func fetchJSON() {
-        NetworkManager.shared.fetch(dataType: Avito.self, from: avitoUrl) { [weak self] result in
-            switch result {
-            case .success(let avito):
-                self?.employees = avito.company.employees.sorted { $0.name < $1.name }
-                
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
+        if StorageManager.shared.cacheTimer(date: Date(), with: "date") {
+            NetworkManager.shared.fetch(dataType: Avito.self, from: avitoUrl) { [weak self] result in
+                switch result {
+                case .success(let avito):
+                    self?.employees = avito.company.employees.sorted { $0.name < $1.name }
+                    
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                    
+                case .failure(let error):
+                    print(error)
                 }
-                
-            case .failure(let error):
-                print(error)
+            }
+        }
+        else {
+            StorageManager.shared.fetchData(dataType: Avito.self, with: "data") { [weak self] result in
+                switch result {
+                case .success(let avito):
+                    self?.employees = avito.company.employees.sorted { $0.name < $1.name }
+                    
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }

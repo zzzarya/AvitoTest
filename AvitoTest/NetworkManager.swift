@@ -13,9 +13,10 @@ enum NetworkError: Error {
     case invalidURL
     case noData
     case decodingError
+    case responseError
 }
 
-class NetworkManager {
+final class NetworkManager {
     static let shared = NetworkManager()
     
     private init() {}
@@ -26,19 +27,31 @@ class NetworkManager {
             return
         }
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
+        URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 completion(.failure(.noData))
                 return
             }
+            
+            guard let response = response as? HTTPURLResponse else { return }
+            if response.statusCode != 200 {
+                completion(.failure(.responseError))
+            }
+            
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 let type = try decoder.decode(T.self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(type))
-                }
+                
+                completion(.success(type))
+                StorageManager.shared.saveDataWithDate(
+                                                        data: data,
+                                                        date: Date(),
+                                                        dataKey: "data",
+                                                        dateKey: "date"
+                )
+                
             } catch {
                 completion(.failure(.decodingError))
             }
