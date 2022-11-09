@@ -50,8 +50,6 @@ final class StorageManager {
         
         guard let timeDifference = currentDate.dateComponents([.second], from: date, to: Date()).second else { return true }
         
-        print(timeDifference)
-        
         return timeDifference > cacheTime
     }
 }
