@@ -10,7 +10,6 @@ import UIKit
 final class EmployeesTableViewController: UITableViewController {
     
     private var employees: [Employee] = []
-    private var qwert = ["1", "2", "3"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
