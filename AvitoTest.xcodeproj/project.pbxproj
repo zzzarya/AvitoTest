@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		603661B0291CF8B7008A2F84 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603661AF291CF8B7008A2F84 /* NetworkMonitor.swift */; };
 		60459724291ACCBF00CCA21B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60459723291ACCBF00CCA21B /* NetworkManager.swift */; };
 		604B7BEF291BFDF000B6257D /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604B7BEE291BFDF000B6257D /* DataCache.swift */; };
 		60CA58C32919711F009F2D97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CA58C22919711F009F2D97 /* AppDelegate.swift */; };
@@ -15,10 +16,11 @@
 		60CA58CC29197120009F2D97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60CA58CB29197120009F2D97 /* Assets.xcassets */; };
 		60CA58CF29197120009F2D97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60CA58CD29197120009F2D97 /* LaunchScreen.storyboard */; };
 		60CA58D7291971AA009F2D97 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CA58D6291971AA009F2D97 /* Company.swift */; };
-		60CA58DB29197CCA009F2D97 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CA58DA29197CCA009F2D97 /* TableViewController.swift */; };
+		60CA58DB29197CCA009F2D97 /* EmployeesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CA58DA29197CCA009F2D97 /* EmployeesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		603661AF291CF8B7008A2F84 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		60459723291ACCBF00CCA21B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		604B7BEE291BFDF000B6257D /* DataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCache.swift; sourceTree = "<group>"; };
 		60CA58BF2919711F009F2D97 /* AvitoTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AvitoTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,7 +31,7 @@
 		60CA58CE29197120009F2D97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60CA58D029197120009F2D97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60CA58D6291971AA009F2D97 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
-		60CA58DA29197CCA009F2D97 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		60CA58DA29197CCA009F2D97 /* EmployeesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		603661A6291CECED008A2F84 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				60CA58D6291971AA009F2D97 /* Company.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		603661A7291CECFB008A2F84 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				603661AF291CF8B7008A2F84 /* NetworkMonitor.swift */,
+				60459723291ACCBF00CCA21B /* NetworkManager.swift */,
+				604B7BEE291BFDF000B6257D /* DataCache.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		603661A8291CED3D008A2F84 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				60CA58DA29197CCA009F2D97 /* EmployeesTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		603661A9291CED6E008A2F84 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				60CA58C82919711F009F2D97 /* Main.storyboard */,
+				60CA58CD29197120009F2D97 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		603661AA291CEDAF008A2F84 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				60CA58C22919711F009F2D97 /* AppDelegate.swift */,
+				60CA58C42919711F009F2D97 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		603661AB291CEDB8008A2F84 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				60CA58CB29197120009F2D97 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		60CA58B62919711F009F2D97 = {
 			isa = PBXGroup;
 			children = (
@@ -62,16 +116,13 @@
 		60CA58C12919711F009F2D97 /* AvitoTest */ = {
 			isa = PBXGroup;
 			children = (
-				60CA58D6291971AA009F2D97 /* Company.swift */,
-				60459723291ACCBF00CCA21B /* NetworkManager.swift */,
-				604B7BEE291BFDF000B6257D /* DataCache.swift */,
-				60CA58DA29197CCA009F2D97 /* TableViewController.swift */,
-				60CA58C22919711F009F2D97 /* AppDelegate.swift */,
-				60CA58C42919711F009F2D97 /* SceneDelegate.swift */,
-				60CA58CB29197120009F2D97 /* Assets.xcassets */,
-				60CA58C82919711F009F2D97 /* Main.storyboard */,
-				60CA58CD29197120009F2D97 /* LaunchScreen.storyboard */,
 				60CA58D029197120009F2D97 /* Info.plist */,
+				603661A6291CECED008A2F84 /* Models */,
+				603661A7291CECFB008A2F84 /* Services */,
+				603661A8291CED3D008A2F84 /* ViewControllers */,
+				603661A9291CED6E008A2F84 /* Storyboards */,
+				603661AA291CEDAF008A2F84 /* App */,
+				603661AB291CEDB8008A2F84 /* Resource */,
 			);
 			path = AvitoTest;
 			sourceTree = "<group>";
@@ -151,8 +202,9 @@
 				60CA58C32919711F009F2D97 /* AppDelegate.swift in Sources */,
 				604B7BEF291BFDF000B6257D /* DataCache.swift in Sources */,
 				60CA58C52919711F009F2D97 /* SceneDelegate.swift in Sources */,
-				60CA58DB29197CCA009F2D97 /* TableViewController.swift in Sources */,
+				60CA58DB29197CCA009F2D97 /* EmployeesTableViewController.swift in Sources */,
 				60CA58D7291971AA009F2D97 /* Company.swift in Sources */,
+				603661B0291CF8B7008A2F84 /* NetworkMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +351,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GUTQ94996V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AvitoTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -312,7 +365,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = swiftbook.AvitoTest;
+				PRODUCT_BUNDLE_IDENTIFIER = AvitoTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -327,6 +380,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GUTQ94996V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AvitoTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -340,7 +394,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = swiftbook.AvitoTest;
+				PRODUCT_BUNDLE_IDENTIFIER = AvitoTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -7,13 +7,21 @@
 
 import UIKit
 
-final class TableViewController: UITableViewController {
+final class EmployeesTableViewController: UITableViewController {
     
     private var employees: [Employee] = []
+    private var qwert = ["1", "2", "3"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchJSON()
+    
+        NetworkMonitor.shared.startMonitoring(completion: { [weak self] isConnected in
+            if isConnected {
+                self?.fetchJSON()
+            } else {
+                self?.showAlert()
+            }
+        })
 }
 // MARK: - UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,10 +56,11 @@ final class TableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-// MARK: - Networking
-extension TableViewController {
+// MARK: - ParsingJSON
+extension EmployeesTableViewController {
     private func fetchJSON() {
         if StorageManager.shared.cacheTimer(date: Date(), with: "date") {
+// MARK: Parsing from Enternet
             NetworkManager.shared.fetch(dataType: Avito.self, from: avitoUrl) { [weak self] result in
                 switch result {
                 case .success(let avito):
@@ -67,6 +76,7 @@ extension TableViewController {
             }
         }
         else {
+// MARK: Parsing from UserDefaults
             StorageManager.shared.fetchData(dataType: Avito.self, with: "data") { [weak self] result in
                 switch result {
                 case .success(let avito):
@@ -81,5 +91,18 @@ extension TableViewController {
                 }
             }
         }
+    }
+}
+
+extension EmployeesTableViewController {
+    private func showAlert() {
+        let alert = UIAlertController(title: "No internet connection",
+                                      message: "Check internet connection",
+                                      preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }

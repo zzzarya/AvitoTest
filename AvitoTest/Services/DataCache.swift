@@ -8,16 +8,15 @@
 import Foundation
 
 enum CacheError: Error {
-    case noData
-    case decodingError
+    case noCacheData
+    case decodingCacheError
 }
 
 final class StorageManager {
     static let shared = StorageManager()
     
-    let cacheTime = 3600
-    
-    let userDefaults = UserDefaults.standard
+    private let cacheTime = 3600
+    private let userDefaults = UserDefaults.standard
     
     private init() {}
     
@@ -28,7 +27,7 @@ final class StorageManager {
     
     func fetchData<T: Decodable>(dataType: T.Type, with key: String, completion: (Result<T, CacheError>) -> Void) {
         guard let data = userDefaults.data(forKey: key) else {
-            completion(.failure(.noData))
+            completion(.failure(.noCacheData))
             return }
         
         do {
@@ -40,7 +39,7 @@ final class StorageManager {
             completion(.success(type))
             
         } catch {
-            completion(.failure(.decodingError))
+            completion(.failure(.decodingCacheError))
         }
     }
     
