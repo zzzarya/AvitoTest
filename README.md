@@ -22,6 +22,6 @@
 
 
 ## Использованный стэк:
-### - UIKit
-### - Storyboards
-### - MVC
+ - UIKit
+ - Storyboards
+ - MVC
