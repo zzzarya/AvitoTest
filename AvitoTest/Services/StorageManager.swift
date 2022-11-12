@@ -25,6 +25,12 @@ final class StorageManager {
         userDefaults.set(date, forKey: dateKey)
     }
     
+    func userDefaultsExists(for key: String) -> Bool {
+        guard let _ = userDefaults.object(forKey: key) else { return false }
+        
+        return true
+    }
+    
     func fetchData<T: Decodable>(dataType: T.Type, with key: String, completion: (Result<T, CacheError>) -> Void) {
         guard let data = userDefaults.data(forKey: key) else {
             completion(.failure(.noCacheData))

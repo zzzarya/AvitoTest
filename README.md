@@ -29,3 +29,5 @@
 ## Внешний вид приложения:
 
 ![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/AppScreen.png)
+
+

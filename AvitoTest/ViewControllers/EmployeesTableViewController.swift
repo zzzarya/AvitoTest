@@ -10,18 +10,23 @@ import UIKit
 final class EmployeesTableViewController: UITableViewController {
     
     private var employees: [Employee] = []
+    
+    private var employeesRefreshControl: UIRefreshControl {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        return refreshControl
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        NetworkMonitor.shared.startMonitoring(completion: { [weak self] isConnected in
-            if isConnected {
-                self?.fetchJSON()
-            } else {
-                self?.showAlert()
-            }
-        })
+        tableView.refreshControl = employeesRefreshControl
+        netMonitoring()
 }
+    
+    @objc private func refresh(sender: UIRefreshControl) {
+        netMonitoring()
+        sender.endRefreshing()
+    }
 // MARK: - UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
         employees.count
@@ -96,12 +101,28 @@ extension EmployeesTableViewController {
 extension EmployeesTableViewController {
     private func showAlert() {
         let alert = UIAlertController(title: "No internet connection",
-                                      message: "Check internet connection",
+                                      message: "Please check your internet connection",
                                       preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "OK", style: .default)
         
         alert.addAction(okAction)
         present(alert, animated: true)
+    }
+}
+// MARK: - InternetMonitorng
+extension EmployeesTableViewController {
+    private func netMonitoring() {
+        NetworkMonitor.shared.startMonitoring(completion: { [weak self] isConnected in
+            if isConnected || StorageManager.shared.userDefaultsExists(for: "data") {
+                DispatchQueue.main.async {
+                    self?.fetchJSON()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self?.showAlert()
+                }
+            }
+        })
     }
 }
