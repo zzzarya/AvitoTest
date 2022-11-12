@@ -32,4 +32,5 @@
 
 ## Проверка интернет соединения 
 
-![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/Check%20internet)
+![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/No%20internet.png)
+
