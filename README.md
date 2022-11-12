@@ -30,4 +30,6 @@
 
 ![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/AppScreen.png)
 
+## Проверка интернет соединения 
 
+![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/Check%20internet)
