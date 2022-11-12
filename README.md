@@ -28,4 +28,4 @@
 
 ## Внешний вид приложения:
 
-![Image alt] https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/AppScreen.png
+![] (https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/AppScreen.png)
