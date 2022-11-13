@@ -28,7 +28,7 @@
 
 ## Внешний вид приложения:
 
-![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/AppScreen.png)
+![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/AppScreen.png = 100x20)
 
 ## Проверка интернет соединения 
 
