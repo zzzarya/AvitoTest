@@ -28,13 +28,13 @@
 
 ## Внешний вид приложения:
 
-![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/AppScreen.png)
+<img src="https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/AppScreen.png" width="393" height="852" />
 
-## Проверка интернет соединения 
+## Проверка интернет соединения: 
 
-![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/No%20internet.png)
+<img src="https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/No%20internet.png" width="393" height="852" />
 
-## Видео 
+## Видео: 
 
 https://user-images.githubusercontent.com/109965569/201522297-a5deef11-e83e-471e-82bc-671eeaba7db8.mp4
 
