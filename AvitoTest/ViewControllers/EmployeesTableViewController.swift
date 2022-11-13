@@ -54,13 +54,12 @@ final class EmployeesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
 // MARK: - Func for UIRefreshControl
    @objc private func refresh(sender: UIRefreshControl) {
-        sender.endRefreshing()
+       netMonitoring()
+       sender.endRefreshing()
     }
 }
-
 // MARK: - ParsingJSON
 extension EmployeesTableViewController {
     private func fetchJSON(completion: @escaping(Result<[Employee], Error>) -> Void) {
