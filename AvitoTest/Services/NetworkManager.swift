@@ -7,8 +7,6 @@
 
 import Foundation
 
-let avitoUrl = "https://run.mocky.io/v3/1d1cb4ec-73db-4762-8c4b-0b8aa3cecd4c"
-
 enum NetworkError: Error {
     case invalidURL
     case noData
@@ -19,8 +17,10 @@ enum NetworkError: Error {
 final class NetworkManager {
     static let shared = NetworkManager()
     
-    private init() {}
+    let avitoUrl = "https://run.mocky.io/v3/1d1cb4ec-73db-4762-8c4b-0b8aa3cecd4c"
     
+    private init() {}
+// MARK: - Fetch JSON
     func fetch<T: Decodable>(dataType: T.Type, from url: String?, completion: @escaping(Result<T, NetworkError>) -> Void) {
         guard let url = URL(string: url ?? "") else {
             completion(.failure(.invalidURL))

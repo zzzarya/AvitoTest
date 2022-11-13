@@ -22,11 +22,6 @@ final class EmployeesTableViewController: UITableViewController {
         tableView.refreshControl = employeesRefreshControl
         netMonitoring()
 }
-    
-    @objc private func refresh(sender: UIRefreshControl) {
-        netMonitoring()
-        sender.endRefreshing()
-    }
 // MARK: - UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
         employees.count
@@ -59,37 +54,30 @@ final class EmployeesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+// MARK: - Func for UIRefreshControl
+   @objc private func refresh(sender: UIRefreshControl) {
+        sender.endRefreshing()
+    }
 }
+
 // MARK: - ParsingJSON
 extension EmployeesTableViewController {
-    private func fetchJSON() {
+    private func fetchJSON(completion: @escaping(Result<[Employee], Error>) -> Void) {
         if StorageManager.shared.cacheTimer(date: Date(), with: "date") {
-// MARK: Parsing from Enternet
-            NetworkManager.shared.fetch(dataType: Avito.self, from: avitoUrl) { [weak self] result in
+            NetworkManager.shared.fetch(dataType: Avito.self, from: NetworkManager.shared.avitoUrl) { result in
                 switch result {
                 case .success(let avito):
-                    self?.employees = avito.company.employees.sorted { $0.name < $1.name }
-                    
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                    }
-                    
+                    completion(.success(avito.company.employees))
                 case .failure(let error):
                     print(error)
                 }
             }
-        }
-        else {
-// MARK: Parsing from UserDefaults
-            StorageManager.shared.fetchData(dataType: Avito.self, with: "data") { [weak self] result in
+        } else {
+            StorageManager.shared.fetchData(dataType: Avito.self, with: "data") { result in
                 switch result {
                 case .success(let avito):
-                    self?.employees = avito.company.employees.sorted { $0.name < $1.name }
-                    
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                    }
-                    
+                    completion(.success(avito.company.employees))
                 case .failure(let error):
                     print(error)
                 }
@@ -116,7 +104,18 @@ extension EmployeesTableViewController {
         NetworkMonitor.shared.startMonitoring(completion: { [weak self] isConnected in
             if isConnected || StorageManager.shared.userDefaultsExists(for: "data") {
                 DispatchQueue.main.async {
-                    self?.fetchJSON()
+                    self?.fetchJSON(completion: { result in
+                        switch result {
+                        case .success(let employees):
+                            self?.employees = employees.sorted { $0.name < $1.name }
+                            
+                            DispatchQueue.main.async {
+                                self?.tableView.reloadData()
+                            }
+                        case .failure(let error):
+                            print(error)
+                        }
+                    })
                 }
             } else {
                 DispatchQueue.main.async {
