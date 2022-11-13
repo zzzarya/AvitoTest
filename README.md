@@ -36,5 +36,6 @@
 
 ## Видео 
 
-https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/Check%20internet.mp4
+https://user-images.githubusercontent.com/109965569/201522297-a5deef11-e83e-471e-82bc-671eeaba7db8.mp4
+
 
