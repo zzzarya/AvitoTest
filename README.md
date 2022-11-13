@@ -31,7 +31,7 @@
 ![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/AppScreen.png)
 
 ## Проверка интернет соединения 
-![AppScreen](https://user-images.githubusercontent.com/109965569/201522332-0366fca1-3d9a-4f31-ba5a-16ea35cb2c7d.png)
+![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/Check%20internet.mp4)
 
 ## Видео 
 
