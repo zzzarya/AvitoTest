@@ -34,7 +34,7 @@
 
 ![](https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/No%20internet.png)
 
-![]<img src="https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/No%20internet.png" width="131" height="284" />
+![](<img src="https://github.com/zzzarya/AvitoTest/blob/main/AvitoTest/Image/No%20internet.png" width="131" height="284" />)
 
 ## Видео 
 
